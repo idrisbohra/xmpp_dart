@@ -68,11 +68,12 @@ class RosterManager {
     iqStanza.addChild(queryElement);
     XmppElement itemElement = XmppElement();
     itemElement.name = "item";
-    itemElement.addChild(itemElement);
+    //itemElement.addChild(itemElement);
     itemElement.addAttribute(XmppAttribute('jid', rosterItem.jid.userAtDomain));
     if (rosterItem.name != null) {
       itemElement.addAttribute(XmppAttribute('name', rosterItem.name));
     }
+    queryElement.addChild(itemElement);
     _myUnrespondedIqStanzas[iqStanza.id] = Tuple2(iqStanza, completer);
     _connection.writeStanza(iqStanza);
     return completer.future;
